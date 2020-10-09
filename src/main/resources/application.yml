@@ -1,0 +1,34 @@
+server:
+  port: 9090
+
+spring:
+  batch:
+    initialize-schema: ALWAYS
+    job:
+      enabled: false
+
+#  jpa:
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+#    show-sql: true
+
+    logging:
+      level:
+        org:
+          springframework:
+            web:
+              filter:
+                commonsRequestLoggingFilter: DEBUG
+filetodb:
+  chunksize: 500
+  destinationpath: out/covid.csv
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+    sqlquery: SELECT id,agebracket,contractedfromwhichpatientsuspected,currentstatus, dateannounced,detectedcity,detecteddistrict,detectedstate,entryid,gender,nationality,notes,numcases,patientnumber,source1,source2,source3,statecode,statepatientnumber,statuschangedate,typeoftransmission FROM COVID
